@@ -4,7 +4,7 @@ require_once __DIR__  . '/../helper.php';
 require_once __DIR__ . '/../Models/Languages.php';
 class LanguagesService
 {
-    private $languages;
+    protected $languages;
 
     public function __construct()
     {

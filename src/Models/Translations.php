@@ -17,7 +17,9 @@ class Translations
         $stmt = $this->pdo->prepare("SELECT COUNT(*) as total_records FROM translations");
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC)['total_records'] ?? 0;
-    }public function getAll($skip = 0, $limit = 10)
+    }
+    
+    public function getAll($skip = 0, $limit = 10)
     {
         $stmt = $this->pdo->prepare("
             SELECT 

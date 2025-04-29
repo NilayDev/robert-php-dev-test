@@ -15,14 +15,19 @@ class TranslationsService
     private $translationUnitsService;
     private $translationUnitLinksService;
 
-    public function __construct()
-    {
+    public function __construct(
+        $pdo = null,
+        $translation = null,
+        $languageService = null,
+        $translationUnitsService = null,
+        $translationUnitLinksService = null
+    ) {
         $db = Database::getInstance();
-        $this->pdo = $db->getConnection();
-        $this->translation = new Translations();
-        $this->languageService = new LanguagesService();
-        $this->translationUnitsService = new TranslationUnitsService();
-        $this->translationUnitLinksService = new TranslationUnitLinksService();
+        $this->pdo = $pdo ?? $db->getConnection();
+        $this->translation = $translation ?? new Translations();
+        $this->languageService = $languageService ?? new LanguagesService();
+        $this->translationUnitsService = $translationUnitsService ?? new TranslationUnitsService();
+        $this->translationUnitLinksService = $translationUnitLinksService ?? new TranslationUnitLinksService();
     }
 
 
@@ -41,7 +46,7 @@ class TranslationsService
             $sourceLangId = $request['source_language_id'];
             $targetLangId = $request['target_language_id'];
 
-           $translationId = $this->translation->store($title, $sourceLangId, $targetLangId);
+            $translationId = $this->translation->store($title, $sourceLangId, $targetLangId);
 
             if (!$translationId) {
                 return false;
@@ -132,7 +137,7 @@ class TranslationsService
                 $exists = $this->translationUnitLinksService->getByTranslationIds($id, $translation_unit_id);
                 if (!empty($translation_unit_id) && (empty($exists) || (!empty($exists) && $exists['translation_unit_link_id'] != $translation_unit_link['translation_unit_link_id']))) {
                     $unit_ids[] = $this->translationUnitLinksService->store($id, $translation_unit_id);
-                }else{
+                } else {
                     $unit_ids[] = $exists['translation_unit_link_id'];
                 }
             }
@@ -144,6 +149,7 @@ class TranslationsService
             $this->pdo->commit();
             return true;
         } catch (Exception $e) {
+            var_dump($e->getMessage());exit;
             $this->pdo->rollBack();
             return false;
         }

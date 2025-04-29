@@ -1,0 +1,50 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore environment and configuration files
+.env
+.env.*.php
+*.local.php
+
+# Ignore log and cache files
+*.log
+/logs/
+/cache/
+/tmp/
+
+# Ignore PHPUnit test results
+/phpunit.xml
+/phpunit.xml.dist
+/test-results/
+/coverage/
+
+# Ignore IDE/editor specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore OS generated files
+ehthumbs.db
+Icon?
+
+# Ignore uploads or user-generated content (if applicable)
+uploads/
+storage/
+
+# Ignore compiled files (optional)
+*.out
+*.class
+
+# Ignore backups or dumps
+*.bak
+*.sql
+*.sql.gz
+
+# Optional: ignore node_modules if any frontend tools are used
+node_modules/

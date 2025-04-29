@@ -4,6 +4,7 @@
 - [Introduction](#introduction)
 - [Features](#Features)
 - [Prerequisites](#Prerequisites)
+- [Installation](#Installation)
 - [Language Translation API](#Language-Translation-API)
 - [How It Works](#How-It-Works)
 - [Example](#Example)
@@ -37,6 +38,12 @@ Before you begin, ensure that you have met the following requirements:
 - Composer (for dependency management)
 - Google Cloud account with the Translate API enabled
 - A MySQL database for data storage
+
+## Installation 
+
+- ```run composer install```
+- ```run php -S localhost:8000``` (for run the project)
+- ```./vendor/bin/phpunit``` (for run the test cases)
 
 
 # Language Translation API
